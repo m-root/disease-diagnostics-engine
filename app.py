@@ -87,7 +87,7 @@ def getCorrectSymptomName():
 @app.route('/api/getDetails', methods = ['POST'])
 def getDetailsfromCode():
   data = request.get_json(silent=True)
-  code = escape(data.get('code'))
+  code = escape(data('code'))
   return jsonify(getDetails(code))
 
 
@@ -98,7 +98,7 @@ def getDetailsfromCode():
 @app.route('/api/sySuggest', methods = ['POST'])
 def sySuggest():
   data = request.get_json(silent=True)
-  symp = escape(data.get('symptom'))
+  symp = escape(data('symptom'))
   print(symp)
 
   # load the weights
@@ -204,7 +204,7 @@ def getDiseases(search):
 def predictFromString():
   
   data = request.get_json(silent=True)
-  symptoms = data.get('symptoms').split('|')
+  symptoms = data('symptoms').split('|')
   
   symptomUIDs = []
   
@@ -224,7 +224,7 @@ def predictFromString():
 def predict():
   lang = escape(request.args.get('lang'))
   data = request.get_json(silent=True)
-  search = data.get('symptoms')
+  search = data('symptoms')
 
   return getDiseases(search)
 
