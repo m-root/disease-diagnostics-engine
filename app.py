@@ -72,7 +72,7 @@ MODEL, LABELS, LABELS_DICT = get_model()
 @app.route('/api/validateSymptom', methods = ['POST'])
 def getCorrectSymptomName():
   data = request.get_json(silent=True)
-  name = escape(data.get('name')).lower()
+  name = escape(data('name')).lower()
   if name in nameToCUI:
     return jsonify({nameToCUI[name]: name})
   else:
